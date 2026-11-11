@@ -20,7 +20,8 @@ button, textarea, input { font: inherit; }
 .topbar { display: flex; align-items: baseline; gap: 1rem; padding: 0.9rem 1.5rem; border-bottom: 1px solid var(--rule); background: var(--surface); }
 .topbar h1 { font-size: 1.25rem; margin: 0; letter-spacing: -0.01em; }
 .org { color: var(--muted); }
-.upload { margin-left: auto; cursor: pointer; padding: 0.4rem 0.8rem; border: 1px solid var(--ink); border-radius: 4px; }
+.user { margin-left: auto; }
+.upload { cursor: pointer; padding: 0.4rem 0.8rem; border: 1px solid var(--ink); border-radius: 4px; }
 .upload input { display: none; }
 .message { margin: 0; padding: 0.5rem 1.5rem; background: #eef2f8; border-bottom: 1px solid var(--rule); }
 
@@ -60,3 +61,14 @@ td small { display: block; color: var(--muted); }
 .actions button.secondary { background: transparent; color: var(--ink); }
 .hint, .empty { color: var(--muted); }
 .empty { padding: 1rem 1.25rem; }
+
+.user { color: var(--muted); }
+.user select { font: inherit; padding: 0.2rem 0.3rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); color: var(--ink); }
+.message.error { background: #fdecea; color: #8a1c1c; }
+.callout code { color: var(--muted); font-size: 0.8rem; }
+.supplier-note { white-space: pre-wrap; overflow-wrap: anywhere; }
+.actions button:disabled { opacity: 0.45; cursor: not-allowed; }
+.hint.blocked { color: var(--review); margin: 0; }
+.audit { list-style: none; padding: 0; margin: 0; font-size: 0.875rem; }
+.audit li { padding: 0.3rem 0; border-bottom: 1px solid var(--rule); overflow-wrap: anywhere; }
+.audit .when { color: var(--muted); font-variant-numeric: tabular-nums; }

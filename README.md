@@ -171,4 +171,16 @@ submission/               templates for your write-ups
 
 ## Running my version
 
-_Describe anything that changed about setup or commands._
+Setup and the `make` commands are unchanged (`make setup`, `make test`, `make dev`, `make predict`, `make eval`).
+
+**Provider.** I used Gemini 3.5 Flash-Lite through its OpenAI-compatible endpoint, and `.env.example` is set up for it: copy it to `.env` and paste your own key into `OPENAI_API_KEY`. No key is included in this repository. A full `make eval` makes 21 model calls (about ₹2.30); `make predict` makes about 27. The free Gemini tier allows 500 requests a day for this model.
+
+What is different:
+
+- **Database.** The schema changed (money is stored as text, plus an `audit_log` table and unique indexes). Delete any `backend/*.db` left over from the starter before running; a fresh one is created on start.
+- **Policy check without an API key.** `cd backend && .venv/bin/python eval/run_eval.py --policy-only` runs the policy code over the labelled dev fields with no LLM call. `make eval` still runs the full pipeline and needs a provider key in `.env` (or `LLM_PROVIDER=fake`).
+- **GST e-invoices (`.json`)** are parsed directly and never sent to a provider.
+- **API.** Approve and reject take `{"user_id": ..., "note": ...}` and are scoped by the `X-Org-Id` header. In the UI, pick who you are signed in as from the top bar.
+- **New optional environment variables.**
+  - `LEDGERLINE_CORS_ORIGINS`: comma-separated origins allowed to call the API (default: the Vite dev server on port 5173).
+  - `LEDGERLINE_FLAG_<NAME>=1`: turns on a departure from the written policy. All are off by default; see `submission/RULINGS.md`.

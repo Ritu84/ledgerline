@@ -1,0 +1,24 @@
+{"document_id": "dev_001", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 9.32, "calls": []}
+{"document_id": "dev_002", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 2.76, "calls": []}
+{"document_id": "dev_003", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 3.45, "calls": []}
+{"document_id": "dev_004", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 3.54, "calls": []}
+{"document_id": "dev_005", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 2.91, "calls": []}
+{"document_id": "dev_006", "error": "HTTPStatusError: Server error '503 Service Unavailable' for url 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503", "seconds": 15.69, "calls": []}
+{"document_id": "dev_007", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 2.77, "calls": []}
+{"document_id": "dev_008", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 23.96, "calls": []}
+{"document_id": "dev_009", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 12.1, "calls": []}
+{"document_id": "dev_010", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 2.08, "calls": []}
+{"document_id": "dev_011", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 2.37, "calls": []}
+{"document_id": "dev_012", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 12.08, "calls": []}
+{"document_id": "dev_013", "error": "HTTPStatusError: Server error '503 Service Unavailable' for url 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503", "seconds": 8.9, "calls": []}
+{"document_id": "dev_014", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 2.43, "calls": []}
+{"document_id": "dev_015", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 5.89, "calls": []}
+{"document_id": "dev_016", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 10.47, "calls": []}
+{"document_id": "dev_017", "error": "HTTPStatusError: Client error '429 Too Many Requests' for url 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429", "seconds": 0.87, "calls": []}
+{"document_id": "dev_018", "error": "HTTPStatusError: Client error '429 Too Many Requests' for url 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429", "seconds": 0.96, "calls": []}
+{"document_id": "dev_019", "error": "HTTPStatusError: Client error '429 Too Many Requests' for url 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429", "seconds": 0.88, "calls": []}
+{"document_id": "dev_020", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 27.18, "calls": []}
+{"document_id": "dev_021", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 2.59, "calls": []}
+{"document_id": "dev_022", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 8.52, "calls": []}
+{"document_id": "dev_023", "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)", "seconds": 12.07, "calls": []}
+{"document_id": "dev_024", "error": "HTTPStatusError: Server error '503 Service Unavailable' for url 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503", "seconds": 7.51, "calls": []}

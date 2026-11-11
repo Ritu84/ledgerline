@@ -1,33 +1,39 @@
 export const ORG_ID = "meridian";
-export const CURRENT_USER = "kavya.iyer";
+export const USERS = ["kavya.iyer", "arjun.mehta", "neha.kulkarni"];
 
+// Amounts arrive as two-decimal strings ("23458.00") and are never converted to floating point.
 export type InvoiceSummary = {
   id: number;
   document_id: string;
+  document_type: string | null;
   supplier_name: string | null;
   invoice_number: string | null;
   invoice_date: string | null;
   currency: string | null;
-  total: number | null;
+  total: string | null;
   status: string;
-  needs_review: number | boolean;
+  needs_review: boolean;
+  required_approvals: number;
 };
 
 export type LineItem = {
   description: string;
-  quantity: number | null;
-  unit_price: number | null;
-  amount: number;
+  quantity: string | null;
+  unit_price: string | null;
+  amount: string | null;
 };
+
+export type Approval = { user_id: string; note: string | null; created_at: string };
+export type AuditEntry = { actor: string; action: string; note: string | null; created_at: string };
 
 export type Invoice = InvoiceSummary & {
   raw_text: string;
   supplier_gstin: string | null;
-  subtotal: number | null;
-  cgst: number | null;
-  sgst: number | null;
-  igst: number | null;
-  round_off: number | null;
+  subtotal: string | null;
+  cgst: string | null;
+  sgst: string | null;
+  igst: string | null;
+  round_off: string | null;
   bank_account: string | null;
   ifsc: string | null;
   po_number: string | null;
@@ -35,44 +41,52 @@ export type Invoice = InvoiceSummary & {
   line_items: LineItem[];
   warnings: string[];
   review_reasons: string[];
-  required_approvals: number;
+  approvals: Approval[];
+  payment: { amount: string; currency: string | null; created_at: string } | null;
+  audit_log: AuditEntry[];
 };
 
 export type DecisionResult = {
   id: number;
   status: string;
-  approvals?: number;
-  required_approvals?: number;
+  approvals: number;
+  required_approvals: number;
 };
 
 const orgHeaders = { "X-Org-Id": ORG_ID };
 
-export async function listInvoices(): Promise<InvoiceSummary[]> {
-  const response = await fetch("/api/invoices", { headers: orgHeaders });
+// Every call goes through here so a failed request is an error the UI shows, never a silent success.
+async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  const response = await fetch(path, { ...init, headers: { ...orgHeaders, ...init.headers } });
+  if (!response.ok) {
+    let detail = `HTTP ${response.status}`;
+    try {
+      const body = await response.json();
+      if (typeof body.detail === "string") detail = body.detail;
+    } catch {
+      // not JSON: keep the status code
+    }
+    throw new Error(detail);
+  }
   return response.json();
 }
 
-export async function getInvoice(id: number): Promise<Invoice> {
-  const response = await fetch(`/api/invoices/${id}`);
-  return response.json();
-}
+export const listInvoices = () => request<InvoiceSummary[]>("/api/invoices");
+export const getInvoice = (id: number) => request<Invoice>(`/api/invoices/${id}`);
 
-export async function uploadInvoice(file: File): Promise<Invoice> {
+export function uploadInvoice(file: File): Promise<Invoice> {
   const body = new FormData();
   body.append("file", file);
-  const response = await fetch("/api/invoices", { method: "POST", headers: orgHeaders, body });
-  if (!response.ok) throw new Error(`Couldn't process ${file.name} (HTTP ${response.status})`);
-  return response.json();
+  return request<Invoice>("/api/invoices", { method: "POST", body });
 }
 
-async function decide(id: number, action: "approve" | "reject", note: string): Promise<DecisionResult> {
-  const response = await fetch(`/api/invoices/${id}/${action}`, {
+function decide(id: number, action: "approve" | "reject", user: string, note: string): Promise<DecisionResult> {
+  return request<DecisionResult>(`/api/invoices/${id}/${action}`, {
     method: "POST",
-    headers: { ...orgHeaders, "Content-Type": "application/json" },
-    body: JSON.stringify({ user_id: CURRENT_USER, note }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user_id: user, note }),
   });
-  return response.json();
 }
 
-export const approveInvoice = (id: number, note: string) => decide(id, "approve", note);
-export const rejectInvoice = (id: number, note: string) => decide(id, "reject", note);
+export const approveInvoice = (id: number, user: string, note: string) => decide(id, "approve", user, note);
+export const rejectInvoice = (id: number, user: string, note: string) => decide(id, "reject", user, note);

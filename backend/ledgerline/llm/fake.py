@@ -28,8 +28,7 @@ CANNED_EXTRACTION = {
         {"description": "Spring Washer M10 (Pkt/500)", "quantity": "4", "unit_price": "620.00",
          "amount": "2,480.00"},
     ],
-    "requires_review": False,
-    "review_reasons": [],
+    "addressed_to_software": False,
 }
 
 

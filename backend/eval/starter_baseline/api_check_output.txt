@@ -1,0 +1,8 @@
+db True provider fake
+1 approve twice: {'id': 1, 'approvals': 1, 'required_approvals': 1, 'status': 'approved'} {'id': 1, 'approvals': 2, 'required_approvals': 1, 'status': 'approved'} payments: [(1, 23458.0), (1, 23458.0)]
+2 other org reads: 200 other org approves: 200
+3 same person twice on 2-approval invoice: {'id': 2, 'approvals': 1, 'required_approvals': 2, 'status': 'ready_for_approval'} {'id': 2, 'approvals': 2, 'required_approvals': 2, 'status': 'approved'}
+4 reject after approve: {'id': 1, 'status': 'rejected'} reject missing id 9999: 200
+5 credit note approve, no note: {'id': 3, 'approvals': 1, 'required_approvals': 1, 'status': 'approved'} [(23458.0,)]
+6 5MB upload: 200
+7 stats: {'invoices_processed': 4, 'llm_cost_inr': 0.0, 'avg_llm_cost_per_invoice_inr': 0.0}

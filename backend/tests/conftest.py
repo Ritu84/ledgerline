@@ -22,6 +22,12 @@ def conn(tmp_path):
 @pytest.fixture
 def fake_llm(monkeypatch):
     """Replace the real provider with the fake client for the duration of a test."""
-    client = FakeClient([json.dumps(CANNED_EXTRACTION)] * 2)
+    client = FakeClient()
     monkeypatch.setattr("ledgerline.extraction.get_client", lambda: client)
     return client
+
+
+@pytest.fixture
+def canned():
+    """A fresh copy of the fake extraction, for tests that change a field."""
+    return json.loads(json.dumps(CANNED_EXTRACTION))
